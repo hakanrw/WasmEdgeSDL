@@ -37,8 +37,8 @@ WasmEdge_Result WasmEdgeSDL_SDL_WasInit(void *Data,
 WasmEdge_Result WasmEdgeSDL_SDL_Quit(void *Data,
                             const WasmEdge_CallingFrameContext *CallFrameCxt,
                             const WasmEdge_Value *In, WasmEdge_Value *Out) {
-  /* TODO: Implement */
-  return WasmEdge_Result_Fail;
+  SDL_Quit();
+  return WasmEdge_Result_Success;
 }
 
 /* bool SDL_IsMainThread(void) */
