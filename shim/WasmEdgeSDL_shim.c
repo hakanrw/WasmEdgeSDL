@@ -8761,7 +8761,6 @@ CreateSDLModule(const struct WasmEdge_ModuleDescriptor *Desc) {
 
   /* EXPORT WasmEdgeSDL_SDL_SetRenderDrawColor */
   /* bool SDL_SetRenderDrawColor(SDL_Renderer *renderer, Uint8 r, Uint8 g, Uint8 b, Uint8 a) */
-  /* TODO: Implement */
   WasmEdge_ValType ParamTypes_SDL_SetRenderDrawColor[5], ReturnTypes_SDL_SetRenderDrawColor[1];
   ParamTypes_SDL_SetRenderDrawColor[0] = WasmEdge_ValTypeGenI32();
   ParamTypes_SDL_SetRenderDrawColor[1] = WasmEdge_ValTypeGenI32();

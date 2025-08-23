@@ -422,8 +422,19 @@ WasmEdge_Result WasmEdgeSDL_SDL_GetRenderScale(void *Data,
 WasmEdge_Result WasmEdgeSDL_SDL_SetRenderDrawColor(void *Data,
                             const WasmEdge_CallingFrameContext *CallFrameCxt,
                             const WasmEdge_Value *In, WasmEdge_Value *Out) {
-  /* TODO: Implement */
-  return WasmEdge_Result_Fail;
+  int32_t RendererHandle = WasmEdge_ValueGetI32(In[0]);
+  int32_t R = WasmEdge_ValueGetI32(In[0]);
+  int32_t G = WasmEdge_ValueGetI32(In[1]);
+  int32_t B = WasmEdge_ValueGetI32(In[2]);
+  int32_t A = WasmEdge_ValueGetI32(In[3]);
+  
+  SDL_Renderer *Renderer = WasmEdgeSDL_Recall_SDL_Renderer(RendererHandle);
+  if (!Renderer) {
+    return WasmEdge_Result_Fail;
+  }
+  Out[0] = WasmEdge_ValueGenI32(SDL_SetRenderDrawColor(Renderer, R, G, B, A));
+  
+  return WasmEdge_Result_Success;
 }
 
 /* bool SDL_SetRenderDrawColorFloat(SDL_Renderer *renderer, float r, float g, float b, float a) */
