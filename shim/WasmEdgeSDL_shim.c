@@ -8987,7 +8987,6 @@ CreateSDLModule(const struct WasmEdge_ModuleDescriptor *Desc) {
 
   /* EXPORT WasmEdgeSDL_SDL_RenderFillRect */
   /* bool SDL_RenderFillRect(SDL_Renderer *renderer, const SDL_FRect *rect) */
-  /* TODO: Implement */
   WasmEdge_ValType ParamTypes_SDL_RenderFillRect[2], ReturnTypes_SDL_RenderFillRect[1];
   ParamTypes_SDL_RenderFillRect[0] = WasmEdge_ValTypeGenI32();
   ParamTypes_SDL_RenderFillRect[1] = WasmEdge_ValTypeGenI32();

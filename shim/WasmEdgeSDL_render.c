@@ -558,8 +558,22 @@ WasmEdge_Result WasmEdgeSDL_SDL_RenderRects(void *Data,
 WasmEdge_Result WasmEdgeSDL_SDL_RenderFillRect(void *Data,
                             const WasmEdge_CallingFrameContext *CallFrameCxt,
                             const WasmEdge_Value *In, WasmEdge_Value *Out) {
-  /* TODO: Implement */
-  return WasmEdge_Result_Fail;
+  WasmEdge_MemoryInstanceContext *MemoryCxt = WasmEdge_CallingFrameGetMemoryInstance(CallFrameCxt, 0);
+  uint32_t RendererHandle = WasmEdge_ValueGetI32(In[0]);
+  uint32_t RectPtr = WasmEdge_ValueGetI32(In[1]);
+  
+  SDL_Renderer *Renderer = WasmEdgeSDL_Recall_SDL_Renderer(RendererHandle);
+  if (!Renderer) {
+    return WasmEdge_Result_Fail;
+  }
+
+  SDL_FRect *Rect = (SDL_FRect*)WasmEdge_MemoryInstanceGetPointer(MemoryCxt, RectPtr, sizeof(SDL_FRect)); 
+  if (!Rect) {
+    return WasmEdge_Result_Fail;
+  }
+  Out[0] = WasmEdge_ValueGenI32(SDL_RenderFillRect(Renderer, Rect));
+
+  return WasmEdge_Result_Success;
 }
 
 /* bool SDL_RenderFillRects(SDL_Renderer *renderer, const SDL_FRect *rects, int count) */
