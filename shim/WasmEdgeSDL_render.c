@@ -40,7 +40,7 @@ WasmEdge_Result WasmEdgeSDL_SDL_CreateRenderer(void *Data,
     return WasmEdge_Result_Fail;
   }
 
-  SDL_Renderer *Renderer = SDL_CreateRenderer(Window, Name);
+  SDL_Renderer *Renderer = SDL_CreateRenderer(Window, SDL_SOFTWARE_RENDERER);
   int32_t RendererHandle = WasmEdgeSDL_Register_SDL_Renderer(Renderer);
   if (!RendererHandle) {
     return WasmEdge_Result_Fail;
