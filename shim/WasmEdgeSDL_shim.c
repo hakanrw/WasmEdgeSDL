@@ -14400,12 +14400,11 @@ CreateSDLModule(const struct WasmEdge_ModuleDescriptor *Desc) {
 
   /* EXPORT WasmEdgeSDL_SDL_CreateWindow */
   /* SDL_Window * SDL_CreateWindow(const char *title, int w, int h, SDL_WindowFlags flags) */
-  /* TODO: Implement */
   WasmEdge_ValType ParamTypes_SDL_CreateWindow[4], ReturnTypes_SDL_CreateWindow[1];
   ParamTypes_SDL_CreateWindow[0] = WasmEdge_ValTypeGenI32();
   ParamTypes_SDL_CreateWindow[1] = WasmEdge_ValTypeGenI32();
   ParamTypes_SDL_CreateWindow[2] = WasmEdge_ValTypeGenI32();
-  ParamTypes_SDL_CreateWindow[3] = WasmEdge_ValTypeGenI32();
+  ParamTypes_SDL_CreateWindow[3] = WasmEdge_ValTypeGenI64();
   ReturnTypes_SDL_CreateWindow[0] = WasmEdge_ValTypeGenI32();
   FType = WasmEdge_FunctionTypeCreate(ParamTypes_SDL_CreateWindow, 4, ReturnTypes_SDL_CreateWindow, 1); 
   FuncName = WasmEdge_StringCreateByCString("SDL_CreateWindow"); 
@@ -15212,10 +15211,8 @@ CreateSDLModule(const struct WasmEdge_ModuleDescriptor *Desc) {
 
   /* EXPORT WasmEdgeSDL_SDL_DestroyWindow */
   /* void SDL_DestroyWindow(SDL_Window *window) */
-  /* TODO: Implement */
   WasmEdge_ValType ParamTypes_SDL_DestroyWindow[1], ReturnTypes_SDL_DestroyWindow[1];
   ParamTypes_SDL_DestroyWindow[0] = WasmEdge_ValTypeGenI32();
-
   FType = WasmEdge_FunctionTypeCreate(ParamTypes_SDL_DestroyWindow, 1, ReturnTypes_SDL_DestroyWindow, 0); 
   FuncName = WasmEdge_StringCreateByCString("SDL_DestroyWindow"); 
   FuncCxt = WasmEdge_FunctionInstanceCreate(FType, WasmEdgeSDL_SDL_DestroyWindow, NULL, 0);

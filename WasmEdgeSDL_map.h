@@ -17,7 +17,8 @@
 
 #define WASMEDGE_SDL_MAP(TYPE) \
   int32_t WasmEdgeSDL_Register_##TYPE(TYPE *reg); \
-  TYPE* WasmEdgeSDL_Recall_##TYPE(int32_t id);
+  TYPE* WasmEdgeSDL_Recall_##TYPE(int32_t id); \
+  void WasmEdgeSDL_Deregister_##TYPE(int32_t id);
 
 WASMEDGE_SDL_MAP(SDL_Window)
 

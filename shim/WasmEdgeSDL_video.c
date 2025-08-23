@@ -1,4 +1,5 @@
 #include "WasmEdgeSDL_shim.h"
+#include "WasmEdgeSDL_map.h"
 #include <SDL3/SDL.h>
 
 /* int SDL_GetNumVideoDrivers(void) */
@@ -221,8 +222,21 @@ WasmEdge_Result WasmEdgeSDL_SDL_GetWindows(void *Data,
 WasmEdge_Result WasmEdgeSDL_SDL_CreateWindow(void *Data,
                             const WasmEdge_CallingFrameContext *CallFrameCxt,
                             const WasmEdge_Value *In, WasmEdge_Value *Out) {
-  /* TODO: Implement */
-  return WasmEdge_Result_Fail;
+  WasmEdge_MemoryInstanceContext *MemoryCxt = WasmEdge_CallingFrameGetMemoryInstance(CallFrameCxt, 0);
+  int32_t TitlePtr = WasmEdge_ValueGetI32(In[0]);
+  int32_t WindowW = WasmEdge_ValueGetI32(In[1]);
+  int32_t WindowH = WasmEdge_ValueGetI32(In[2]);
+  int32_t WindowFlags = WasmEdge_ValueGetI64(In[3]);
+  char *Title = WasmEdge_MemoryInstanceGetPointer(MemoryCxt, TitlePtr, 0); // FIXME: Unsafe
+  
+  SDL_Window *Window = SDL_CreateWindow(Title, WindowW, WindowH, WindowFlags);
+  int32_t WindowHandle = WasmEdgeSDL_Register_SDL_Window(Window);
+  if (!WindowHandle) {
+    return WasmEdge_Result_Fail;
+  }
+
+  Out[0] = WasmEdge_ValueGenI32(WindowHandle);
+  return WasmEdge_Result_Success;
 }
 
 /* SDL_Window * SDL_CreatePopupWindow(SDL_Window *parent, int offset_x, int offset_y, int w, int h, SDL_WindowFlags flags) */
@@ -685,8 +699,13 @@ WasmEdge_Result WasmEdgeSDL_SDL_FlashWindow(void *Data,
 WasmEdge_Result WasmEdgeSDL_SDL_DestroyWindow(void *Data,
                             const WasmEdge_CallingFrameContext *CallFrameCxt,
                             const WasmEdge_Value *In, WasmEdge_Value *Out) {
-  /* TODO: Implement */
-  return WasmEdge_Result_Fail;
+  int32_t WindowHandle = WasmEdge_ValueGetI32(In[0]);
+  SDL_Window *Window = WasmEdgeSDL_Recall_SDL_Window(WindowHandle);
+  if (!Window) {
+    return WasmEdge_Result_Fail;
+  }
+  WasmEdgeSDL_Deregister_SDL_Window(WindowHandle);
+  return WasmEdge_Result_Success;
 }
 
 /* bool SDL_ScreenSaverEnabled(void) */

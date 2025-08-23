@@ -142,6 +142,11 @@ target_link_libraries(wasmedgePluginWasmEdgeSDL
   SDL3::SDL3
 )
 
+target_include_directories(wasmedgePluginWasmEdgeSDL
+  PRIVATE
+  ${CMAKE_SOURCE_DIR}
+)
+
 install(
   TARGETS wasmedgePluginWasmEdgeSDL
   DESTINATION ${CMAKE_INSTALL_LIBDIR}/wasmedge

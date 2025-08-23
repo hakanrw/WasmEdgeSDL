@@ -19,6 +19,12 @@
       return NULL; \
     } \
     return WasmEdgeSDL_##TYPE##_table[id]; \
+  } \
+  void WasmEdgeSDL_Deregister_##TYPE(int32_t id) { \
+    /* TODO: Implement better */ \
+    if (id > 0 && id < WasmEdgeSDL_##TYPE##_count) { \
+      WasmEdgeSDL_##TYPE##_table[id] = NULL; \
+    } \
   }
 
 WASMEDGE_SDL_IMPL(SDL_Window)
