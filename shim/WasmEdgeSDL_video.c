@@ -226,7 +226,7 @@ WasmEdge_Result WasmEdgeSDL_SDL_CreateWindow(void *Data,
   int32_t TitlePtr = WasmEdge_ValueGetI32(In[0]);
   int32_t WindowW = WasmEdge_ValueGetI32(In[1]);
   int32_t WindowH = WasmEdge_ValueGetI32(In[2]);
-  int32_t WindowFlags = WasmEdge_ValueGetI64(In[3]);
+  int64_t WindowFlags = WasmEdge_ValueGetI64(In[3]);
   char *Title = WasmEdge_MemoryInstanceGetPointer(MemoryCxt, TitlePtr, 0); // FIXME: Unsafe
   
   SDL_Window *Window = SDL_CreateWindow(Title, WindowW, WindowH, WindowFlags);

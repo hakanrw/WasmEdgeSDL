@@ -136,6 +136,11 @@ target_compile_options(wasmedgePluginWasmEdgeSDL
   -DWASMEDGE_PLUGIN
 )
 
+target_compile_options(wasmedgePluginWasmEdgeSDL PRIVATE
+    $<$<C_COMPILER_ID:MSVC>:/W3 /permissive- /WX>
+    $<$<NOT:$<C_COMPILER_ID:MSVC>>:-Wall -Werror>
+)
+
 target_link_libraries(wasmedgePluginWasmEdgeSDL
   PRIVATE
   WasmEdge::wasmedge

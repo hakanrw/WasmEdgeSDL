@@ -3,7 +3,7 @@
 
 #define WASMEDGE_SDL_IMPL(TYPE) \
   static TYPE* WasmEdgeSDL_##TYPE##_table[1024]; \
-  static uint32_t WasmEdgeSDL_##TYPE##_count = 1; /* 0 reserved */ \
+  static int32_t WasmEdgeSDL_##TYPE##_count = 1; /* 0 reserved */ \
   \
   int32_t WasmEdgeSDL_Register_##TYPE(TYPE *reg) { \
     if (WasmEdgeSDL_##TYPE##_count >= 1024) { \

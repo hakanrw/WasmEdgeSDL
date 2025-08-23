@@ -46,5 +46,5 @@ static WasmEdge_PluginDescriptor Desc[] = {{
 /* Ensure the Plugin Descriptor is exported */
 WASMEDGE_CAPI_PLUGIN_EXPORT const WasmEdge_PluginDescriptor *
 WasmEdge_Plugin_GetDescriptor(void) {
-  return &Desc;
+  return Desc;
 }
