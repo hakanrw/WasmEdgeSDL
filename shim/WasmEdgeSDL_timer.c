@@ -37,8 +37,9 @@ WasmEdge_Result WasmEdgeSDL_SDL_GetPerformanceFrequency(void *Data,
 WasmEdge_Result WasmEdgeSDL_SDL_Delay(void *Data,
                             const WasmEdge_CallingFrameContext *CallFrameCxt,
                             const WasmEdge_Value *In, WasmEdge_Value *Out) {
-  /* TODO: Implement */
-  return WasmEdge_Result_Fail;
+  int32_t Delay = WasmEdge_ValueGetI32(In[0]);
+  SDL_Delay(Delay);
+  return WasmEdge_Result_Success;
 }
 
 /* void SDL_DelayNS(Uint64 ns) */

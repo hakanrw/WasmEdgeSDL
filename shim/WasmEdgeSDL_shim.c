@@ -2022,7 +2022,6 @@ CreateSDLModule(const struct WasmEdge_ModuleDescriptor *Desc) {
 
   /* EXPORT WasmEdgeSDL_SDL_PollEvent */
   /* bool SDL_PollEvent(SDL_Event *event) */
-  /* TODO: Implement */
   WasmEdge_ValType ParamTypes_SDL_PollEvent[1], ReturnTypes_SDL_PollEvent[1];
   ParamTypes_SDL_PollEvent[0] = WasmEdge_ValTypeGenI32();
   ReturnTypes_SDL_PollEvent[0] = WasmEdge_ValTypeGenI32();
@@ -13564,10 +13563,8 @@ CreateSDLModule(const struct WasmEdge_ModuleDescriptor *Desc) {
 
   /* EXPORT WasmEdgeSDL_SDL_Delay */
   /* void SDL_Delay(Uint32 ms) */
-  /* TODO: Implement */
   WasmEdge_ValType ParamTypes_SDL_Delay[1], ReturnTypes_SDL_Delay[1];
   ParamTypes_SDL_Delay[0] = WasmEdge_ValTypeGenI32();
-
   FType = WasmEdge_FunctionTypeCreate(ParamTypes_SDL_Delay, 1, ReturnTypes_SDL_Delay, 0); 
   FuncName = WasmEdge_StringCreateByCString("SDL_Delay"); 
   FuncCxt = WasmEdge_FunctionInstanceCreate(FType, WasmEdgeSDL_SDL_Delay, NULL, 0);

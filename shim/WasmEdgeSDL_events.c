@@ -53,8 +53,14 @@ WasmEdge_Result WasmEdgeSDL_SDL_FlushEvents(void *Data,
 WasmEdge_Result WasmEdgeSDL_SDL_PollEvent(void *Data,
                             const WasmEdge_CallingFrameContext *CallFrameCxt,
                             const WasmEdge_Value *In, WasmEdge_Value *Out) {
-  /* TODO: Implement */
-  return WasmEdge_Result_Fail;
+  WasmEdge_MemoryInstanceContext *MemoryCxt = WasmEdge_CallingFrameGetMemoryInstance(CallFrameCxt, 0);
+  int32_t EventOutPtr = WasmEdge_ValueGetI32(In[0]);
+  SDL_Event *EventOut = WasmEdge_MemoryInstanceGetPointer(MemoryCxt, EventOutPtr, sizeof(SDL_Event));
+
+  // FIXME: ABI breakage on big endian systems, and possibly many other bugs
+  Out[0] = WasmEdge_ValueGenI32(SDL_PollEvent(EventOut));
+
+  return WasmEdge_Result_Success;
 }
 
 /* bool SDL_WaitEvent(SDL_Event *event) */
