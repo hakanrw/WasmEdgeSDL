@@ -45,8 +45,11 @@ WasmEdge_Result WasmEdgeSDL_SDL_SetLogPriorityPrefix(void *Data,
 WasmEdge_Result WasmEdgeSDL_SDL_Log(void *Data,
                             const WasmEdge_CallingFrameContext *CallFrameCxt,
                             const WasmEdge_Value *In, WasmEdge_Value *Out) {
-  /* TODO: Implement */
-  return WasmEdge_Result_Fail;
+  WasmEdge_MemoryInstanceContext *MemoryCxt = WasmEdge_CallingFrameGetMemoryInstance(CallFrameCxt, 0);
+  int32_t WasmPtr = WasmEdge_ValueGetI32(In[0]);
+  char *Msg = WasmEdge_MemoryInstanceGetPointer(MemoryCxt, WasmPtr, 0); // FIXME: Unsafe
+  SDL_Log("%s", Msg);
+  return WasmEdge_Result_Success;
 }
 
 /* void SDL_LogTrace(int category, SDL_PRINTF_FORMAT_STRING const char *fmt, ...) */

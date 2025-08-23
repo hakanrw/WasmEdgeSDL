@@ -6331,12 +6331,9 @@ CreateSDLModule(const struct WasmEdge_ModuleDescriptor *Desc) {
 
   /* EXPORT WasmEdgeSDL_SDL_Log */
   /* void SDL_Log(SDL_PRINTF_FORMAT_STRING const char *fmt, ...) */
-  /* TODO: Implement */
-  WasmEdge_ValType ParamTypes_SDL_Log[2], ReturnTypes_SDL_Log[1];
+  WasmEdge_ValType ParamTypes_SDL_Log[1], ReturnTypes_SDL_Log[1];
   ParamTypes_SDL_Log[0] = WasmEdge_ValTypeGenI32();
-  ParamTypes_SDL_Log[1] = WasmEdge_ValTypeGenI32();
-
-  FType = WasmEdge_FunctionTypeCreate(ParamTypes_SDL_Log, 2, ReturnTypes_SDL_Log, 0); 
+  FType = WasmEdge_FunctionTypeCreate(ParamTypes_SDL_Log, 1, ReturnTypes_SDL_Log, 0); 
   FuncName = WasmEdge_StringCreateByCString("SDL_Log"); 
   FuncCxt = WasmEdge_FunctionInstanceCreate(FType, WasmEdgeSDL_SDL_Log, NULL, 0);
   WasmEdge_ModuleInstanceAddFunction(Mod, FuncName, FuncCxt);
