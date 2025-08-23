@@ -4284,7 +4284,6 @@ CreateSDLModule(const struct WasmEdge_ModuleDescriptor *Desc) {
 
   /* EXPORT WasmEdgeSDL_SDL_Init */
   /* bool SDL_Init(SDL_InitFlags flags) */
-  /* TODO: Implement */
   WasmEdge_ValType ParamTypes_SDL_Init[1], ReturnTypes_SDL_Init[1];
   ParamTypes_SDL_Init[0] = WasmEdge_ValTypeGenI32();
   ReturnTypes_SDL_Init[0] = WasmEdge_ValTypeGenI32();

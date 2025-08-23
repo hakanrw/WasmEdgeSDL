@@ -5,16 +5,16 @@
 WasmEdge_Result WasmEdgeSDL_SDL_Init(void *Data,
                             const WasmEdge_CallingFrameContext *CallFrameCxt,
                             const WasmEdge_Value *In, WasmEdge_Value *Out) {
-  /* TODO: Implement */
-  return WasmEdge_Result_Fail;
+  int32_t flags = WasmEdge_ValueGetI32(In[0]);
+  Out[0] = WasmEdge_ValueGenI32(SDL_Init(flags));
+  return WasmEdge_Result_Success;
 }
 
 /* bool SDL_InitSubSystem(SDL_InitFlags flags) */
 WasmEdge_Result WasmEdgeSDL_SDL_InitSubSystem(void *Data,
                             const WasmEdge_CallingFrameContext *CallFrameCxt,
                             const WasmEdge_Value *In, WasmEdge_Value *Out) {
-  /* TODO: Implement */
-  return WasmEdge_Result_Fail;
+  return WasmEdgeSDL_SDL_Init(Data, CallFrameCxt, In, Out);
 }
 
 /* void SDL_QuitSubSystem(SDL_InitFlags flags) */
