@@ -8088,7 +8088,6 @@ CreateSDLModule(const struct WasmEdge_ModuleDescriptor *Desc) {
 
   /* EXPORT WasmEdgeSDL_SDL_CreateRenderer */
   /* SDL_Renderer * SDL_CreateRenderer(SDL_Window *window, const char *name) */
-  /* TODO: Implement */
   WasmEdge_ValType ParamTypes_SDL_CreateRenderer[2], ReturnTypes_SDL_CreateRenderer[1];
   ParamTypes_SDL_CreateRenderer[0] = WasmEdge_ValTypeGenI32();
   ParamTypes_SDL_CreateRenderer[1] = WasmEdge_ValTypeGenI32();
@@ -9114,10 +9113,8 @@ CreateSDLModule(const struct WasmEdge_ModuleDescriptor *Desc) {
 
   /* EXPORT WasmEdgeSDL_SDL_DestroyRenderer */
   /* void SDL_DestroyRenderer(SDL_Renderer *renderer) */
-  /* TODO: Implement */
   WasmEdge_ValType ParamTypes_SDL_DestroyRenderer[1], ReturnTypes_SDL_DestroyRenderer[1];
   ParamTypes_SDL_DestroyRenderer[0] = WasmEdge_ValTypeGenI32();
-
   FType = WasmEdge_FunctionTypeCreate(ParamTypes_SDL_DestroyRenderer, 1, ReturnTypes_SDL_DestroyRenderer, 0); 
   FuncName = WasmEdge_StringCreateByCString("SDL_DestroyRenderer"); 
   FuncCxt = WasmEdge_FunctionInstanceCreate(FType, WasmEdgeSDL_SDL_DestroyRenderer, NULL, 0);

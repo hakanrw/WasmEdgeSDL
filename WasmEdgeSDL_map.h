@@ -21,5 +21,6 @@
   void WasmEdgeSDL_Deregister_##TYPE(int32_t id);
 
 WASMEDGE_SDL_MAP(SDL_Window)
+WASMEDGE_SDL_MAP(SDL_Renderer)
 
 #endif /* WASMEDGE_SDL_MAP_H */

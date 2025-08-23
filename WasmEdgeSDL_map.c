@@ -28,3 +28,4 @@
   }
 
 WASMEDGE_SDL_IMPL(SDL_Window)
+WASMEDGE_SDL_IMPL(SDL_Renderer)

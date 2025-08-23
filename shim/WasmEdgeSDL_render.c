@@ -29,8 +29,24 @@ WasmEdge_Result WasmEdgeSDL_SDL_CreateWindowAndRenderer(void *Data,
 WasmEdge_Result WasmEdgeSDL_SDL_CreateRenderer(void *Data,
                             const WasmEdge_CallingFrameContext *CallFrameCxt,
                             const WasmEdge_Value *In, WasmEdge_Value *Out) {
-  /* TODO: Implement */
-  return WasmEdge_Result_Fail;
+  WasmEdge_MemoryInstanceContext *MemoryCxt = WasmEdge_CallingFrameGetMemoryInstance(CallFrameCxt, 0);
+  int32_t WindowHandle = WasmEdge_ValueGetI32(In[0]);
+  int32_t NamePtr = WasmEdge_ValueGetI32(In[1]);
+  char *Name = NULL; //WasmEdge_MemoryInstanceGetPointer(MemoryCxt, NamePtr, 0); // FIXME: Unsafe
+
+  SDL_Window *Window = WasmEdgeSDL_Recall_SDL_Window(WindowHandle);
+  if (!Window) {
+    return WasmEdge_Result_Fail;
+  }
+
+  SDL_Renderer *Renderer = SDL_CreateRenderer(Window, Name);
+  int32_t RendererHandle = WasmEdgeSDL_Register_SDL_Renderer(Renderer);
+  if (!RendererHandle) {
+    return WasmEdge_Result_Fail;
+  }
+  
+  Out[0] = WasmEdge_ValueGenI32(RendererHandle);
+  return WasmEdge_Result_Success;
 }
 
 /* SDL_Renderer * SDL_CreateRendererWithProperties(SDL_PropertiesID props) */
@@ -589,8 +605,16 @@ WasmEdge_Result WasmEdgeSDL_SDL_DestroyTexture(void *Data,
 WasmEdge_Result WasmEdgeSDL_SDL_DestroyRenderer(void *Data,
                             const WasmEdge_CallingFrameContext *CallFrameCxt,
                             const WasmEdge_Value *In, WasmEdge_Value *Out) {
-  /* TODO: Implement */
-  return WasmEdge_Result_Fail;
+  int32_t RendererHandle = WasmEdge_ValueGetI32(In[0]);
+  SDL_Renderer *Renderer = WasmEdgeSDL_Recall_SDL_Renderer(RendererHandle);
+  if (!Renderer) {
+    return WasmEdge_Result_Fail;
+  }
+
+  SDL_DestroyRenderer(Renderer);
+  WasmEdgeSDL_Deregister_SDL_Renderer(RendererHandle);
+  
+  return WasmEdge_Result_Success;
 }
 
 /* bool SDL_FlushRenderer(SDL_Renderer *renderer) */
