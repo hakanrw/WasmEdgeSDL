@@ -38,6 +38,7 @@ find_package(SDL3 REQUIRED)
 add_library(wasmedgePluginWasmEdgeSDL
   SHARED
   WasmEdgeSDL_module.c
+  WasmEdgeSDL_map.c
   shim/WasmEdgeSDL.c
   shim/WasmEdgeSDL_assert.c
   shim/WasmEdgeSDL_asyncio.c
