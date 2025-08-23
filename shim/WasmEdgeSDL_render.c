@@ -497,8 +497,13 @@ WasmEdge_Result WasmEdgeSDL_SDL_GetRenderDrawBlendMode(void *Data,
 WasmEdge_Result WasmEdgeSDL_SDL_RenderClear(void *Data,
                             const WasmEdge_CallingFrameContext *CallFrameCxt,
                             const WasmEdge_Value *In, WasmEdge_Value *Out) {
-  /* TODO: Implement */
-  return WasmEdge_Result_Fail;
+  uint32_t RendererHandle = WasmEdge_ValueGetI32(In[0]);
+  SDL_Renderer *Renderer = WasmEdgeSDL_Recall_SDL_Renderer(RendererHandle);
+  if (!Renderer) {
+    return WasmEdge_Result_Fail;
+  }
+  Out[0] = WasmEdge_ValueGenI32(SDL_RenderClear(Renderer));
+  return WasmEdge_Result_Success;
 }
 
 /* bool SDL_RenderPoint(SDL_Renderer *renderer, float x, float y) */

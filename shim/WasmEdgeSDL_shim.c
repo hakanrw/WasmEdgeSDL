@@ -8884,7 +8884,6 @@ CreateSDLModule(const struct WasmEdge_ModuleDescriptor *Desc) {
 
   /* EXPORT WasmEdgeSDL_SDL_RenderClear */
   /* bool SDL_RenderClear(SDL_Renderer *renderer) */
-  /* TODO: Implement */
   WasmEdge_ValType ParamTypes_SDL_RenderClear[1], ReturnTypes_SDL_RenderClear[1];
   ParamTypes_SDL_RenderClear[0] = WasmEdge_ValTypeGenI32();
   ReturnTypes_SDL_RenderClear[0] = WasmEdge_ValTypeGenI32();
