@@ -2,7 +2,39 @@
 
 **WasmEdgeSDL** is a [WasmEdge](https://wasmedge.org/) plugin that exposes [SDL3](https://libsdl.org/) functions to WebAssembly guest programs. It enables SDL-based applications to run in WebAssembly environments with a seamless host-guest function bridge.
 
+This is a community plugin for WasmEdge. Not affiliated with WasmEdge upstream - except in spirit and in name, because, well, it only works there.
+
+⚠️ Disclaimer: At this time, this project is highly experimental and not production-ready. Many functions are incomplete, behavior may change at any time, and crashes are likely. It also has no security hardening, don’t run untrusted code with it. Use it only for testing, learning, or tinkering at your own risk.
+
+Thanks to the WasmEdge team for the runtime, and to the SDL team for the library that makes this all possible.
+
 ---
+
+## Demo
+<p align="center">
+<img width="804" height="647" alt="image" src="https://github.com/user-attachments/assets/dbed7fef-7886-4509-888a-8f17a1894ba4" />
+</p>
+
+---
+
+## WasmEdgeSDL Support Matrix
+
+| Subsystem             | Status     | Implemented Functions                                                                 |
+|-----------------------|------------|---------------------------------------------------------------------------------------|
+| **Core**              | ⚠️ Partial | `SDL_Init`, `SDL_Quit`, `SDL_Log`,                                                   |
+| **Video** (`SDL_INIT_VIDEO`) | ⚠️ Partial | `SDL_CreateWindow`, `SDL_DestroyWindow`, `SDL_CreateRenderer` (software only), `SDL_DestroyRenderer`, `SDL_SetRenderDrawColor`, `SDL_RenderClear`, `SDL_RenderFillRect`, `SDL_RenderPresent` |
+| **Events** (`SDL_INIT_EVENTS`) | ⚠️ Partial | `SDL_PollEvent`                                                                      |
+| **Timer** (`SDL_INIT_TIMER`)   | ⚠️ Partial     | `SDL_Delay`                                                                  |
+| **Audio** (`SDL_INIT_AUDIO`)   | ❌ Stub     | Not implemented yet                                                                  |
+| **Joystick** (`SDL_INIT_JOYSTICK`) | ❌ Stub | Not implemented yet                                                                  |
+| **GameController** (`SDL_INIT_GAMECONTROLLER`) | ❌ Stub | Not implemented yet                                                                  |
+| **Haptic** (`SDL_INIT_HAPTIC`) | ❌ Stub     | Not implemented yet                                                                  |
+
+### Notes
+- **Incremental expansion:** Stubs of all SDL routines are automatically generated and present in the codebase. Their implementation can be filled in incrementally.
+- **Renderer backend:** `SDL_CreateRenderer` is hardcoded to **software rendering** due to WasmEdge threading issues.  
+- **Pointers:** Guest pointers are represented as handles (fake pointers, e.g. `0x00000001`).  
+- This project is **experimental, unstable, and not secure**, only use for testing and learning.
 
 ## Project Structure
 
